@@ -28,6 +28,7 @@ steps:
     testim --label "CoolRunnings" \
     --token "GqKVj97IUUOXDrAJPirAty6HsMIGUZMqvRi4mm7IlvlBupA0tf" \
     --project "iLyLKuuWLZ2UaItwcRDP" \
+    --test-name "Demo Bookings"
     --grid "Testim-Grid" \
     --report-file testim-tests-report.xml
   displayName: 'npm install testim-cli and run tests'
