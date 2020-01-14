@@ -1,0 +1,39 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g @testim/testim-cli
+    testim --label "CoolRunnings" \
+    --token "GqKVj97IUUOXDrAJPirAty6HsMIGUZMqvRi4mm7IlvlBupA0tf" \
+    --project "iLyLKuuWLZ2UaItwcRDP" \
+    --grid "LOCALGRID" \
+    --report-file testim-tests-report.xml
+  displayName: 'npm install testim-cli and run tests'
+
+- task: PublishTestResults@2
+  displayName: 'publish testim test results'
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/testim-tests-report.xml'
